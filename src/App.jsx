@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import DataOfDay from './components/DataOfDay';
 import HeroSection from './components/HeroSection'
 import Services from './components/Services';
+import './styles/scss/main.scss';
 
 const App = () => {
 
@@ -37,6 +39,7 @@ const App = () => {
               <div className='max-w-5xl mx-auto w-11/12'>
                 <HeroSection/>
                 <Services/>
+                <DataOfDay/>
               </div>
             </div>
       </>
