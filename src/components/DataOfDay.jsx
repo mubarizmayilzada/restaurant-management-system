@@ -16,7 +16,7 @@ const DataOfDay = () => {
             </h3>
         </div>
         <div className='card__1 card--2'>
-        <h2>
+            <h2>
                 Profit of Completed: 
             </h2>
             <h3>

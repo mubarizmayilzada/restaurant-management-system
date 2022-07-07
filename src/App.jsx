@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import DataOfDay from './components/DataOfDay';
 import HeroSection from './components/HeroSection'
 import Services from './components/Services';
+import Table from './components/Table';
 import './styles/scss/main.scss';
 
 const App = () => {
@@ -41,6 +42,7 @@ const App = () => {
                 <Services/>
                 <DataOfDay/>
               </div>
+                <Table/>
             </div>
       </>
     )
