@@ -1,5 +1,4 @@
 import React from 'react';
-import Services from '../mock-data/services';
 
 const HeroSection = () => {
   return (

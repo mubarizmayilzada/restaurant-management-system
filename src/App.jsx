@@ -5,6 +5,7 @@ import Table from './components/Table';
 import {BrowserRouter,Routes, Route} from 'react-router-dom';
 import './styles/scss/main.scss';
 import Details from './components/Details';
+import Admin from './admin/Admin';
 
 const App = () => {
 
@@ -46,6 +47,8 @@ const App = () => {
                 <Routes>
                   <Route path='/' exact element={<Table/>}/>
                   <Route path='/details' exact element={<Details/>}/>
+                  <Route path='/admin' exact element={<Admin/>}/>
+
                 </Routes>
               </BrowserRouter>
             </div>
