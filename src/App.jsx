@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import DataOfDay from './components/DataOfDay';
 import HeroSection from './components/HeroSection'
 import Services from './components/Services';
 import Table from './components/Table';
+import {BrowserRouter,Routes, Route} from 'react-router-dom';
 import './styles/scss/main.scss';
+import Details from './components/Details';
 
 const App = () => {
 
@@ -37,12 +38,16 @@ const App = () => {
           {theme === 'dark' ? '🌞' : '🌙'}
         </button>
             <div className="font-inter bg:white dark:bg-slate-900">
-              <div className='max-w-5xl mx-auto w-11/12'>
+            <div className='max-w-5xl mx-auto w-11/12'>
                 <HeroSection/>
                 <Services/>
-                <DataOfDay/>
-              </div>
-                <Table/>
+            </div>
+              <BrowserRouter>
+                <Routes>
+                  <Route path='/' exact element={<Table/>}/>
+                  <Route path='/details' exact element={<Details/>}/>
+                </Routes>
+              </BrowserRouter>
             </div>
       </>
     )

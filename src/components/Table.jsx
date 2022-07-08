@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/scss/main.scss';
+import DataOfDay from './DataOfDay';
 import TotalBudget from './TotalBudget';
 
 
@@ -32,12 +34,16 @@ const Table = () => {
           email: 'veronica.lodge@example.com',
           image: 'https://bit.ly/3vaOTe1',
         },
-        // More people...
       ];
 
       const deta = new Date();
     return (
+      <>
+      
+
     <div className="table-wrapper flex flex-col">
+
+			<DataOfDay/>
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div className="shadow overflow-hidden border-b border-gray-300 sm:rounded-lg">
@@ -127,9 +133,9 @@ const Table = () => {
                       {deta.toUTCString()}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <a href="#" className="p-1 px-2 rounded-full bg-indigo-200 text-gray-700 dark:text-indigo-600  hover:text-indigo-900">
+                      <Link to="/details" className="p-1 px-2 rounded-full bg-indigo-200 text-gray-700 dark:text-indigo-600  hover:text-indigo-900">
                         Details
-                      </a>
+                      </Link>
                     </td>
                   </tr>
                 ))}
@@ -145,6 +151,7 @@ const Table = () => {
 
       <TotalBudget></TotalBudget>
     </div>
+    </>
   )
 }
 

@@ -1,0 +1,26 @@
+{
+  "meals": [
+    { "id": 1, "title": "Dolma", "price": 6},
+    { "id": 2, "title": "Yumurta", "price": 2},
+    { "id": 3, "title": "Kabab", "price": 10},
+    { "id": 4, "title": "Sac", "price": 6},
+    { "id": 5, "title": "Baliq", "price": 8},
+    { "id": 6, "title": "Merci", "price": 3},
+    { "id": 7, "title": "Pizza", "price": 10},
+    { "id": 8, "title": "Nar qovurmasi", "price": 15}
+  ],
+  "workers": [
+    { "id": 1, "name": "Mubariz"},
+    { "id": 2, "name": "Sara"},
+    { "id": 3, "name": "Nisa"},
+    { "id": 4, "name": "Alice"}
+
+  ],
+  "tables": [
+    { "id": 1, "name": "table-1"},
+    { "id": 2, "name": "table-2"},
+    { "id": 3, "name": "table-3"},
+    { "id": 4, "name": "table-4"},
+    { "id": 5, "name": "table-5"}
+  ]
+}

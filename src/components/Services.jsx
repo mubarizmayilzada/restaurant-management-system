@@ -1,5 +1,5 @@
 import React from 'react';
-import services from '../data/services';
+import services from '../mock-data/services';
 import SectionTitle from './SectionTitle';
 import ServiceItem from './ServicesItem';
 
