@@ -1,0 +1,41 @@
+.custom-form{
+    margin-top: 15px;
+}
+.custom-input{
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 20%;
+    border-radius: 5px;
+    border: 1px solid rgb(200,200,200);
+    margin-right: 2px;
+    outline: none;
+    color: indigo;
+    
+    &__number{
+        width: 10%;
+    }
+}
+
+.custom-button{
+    padding: 10px;
+    border: 1px solid indigo;
+    border-radius: 10px;
+    color: indigo;
+    transition: all .3s ease;
+    margin: 10px;
+    &:hover{
+        background-color: indigo;
+        color: white;
+    }
+}
+
+
+.custom-price{
+    padding: 13px;
+    display: inline-block;
+    margin: 5px;
+    margin-left: 0;
+    background-color: indigo;
+    border-radius: 5px;
+    color: white;
+}

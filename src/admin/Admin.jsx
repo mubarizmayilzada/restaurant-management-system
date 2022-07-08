@@ -1,14 +1,12 @@
 import React from 'react'
-import DropDown from './DropDown'
+import AddForm from './AddForm'
+import OrderTable from './OrderTable'
 
 const Admin = () => {
-  const options = ['new',"edit","delete","show"]
   return (
-    <div>
-      <div className="dropdowns-wrapper">
-      <DropDown options={options}></DropDown>
-      <DropDown options={options}></DropDown>
-      </div>
+    <div className="admin">
+      <AddForm/>
+      <OrderTable/>
     </div>
   )
 }

@@ -1,6 +1,10 @@
-.custom-dropdown{
-    outline:none;
+.dropdown-wrapper{
+    display: inline-block;
+    margin-right: 10px;
 }
 .custom-list-item{
     cursor: pointer;
+}
+.custom-drop-wrapper{
+    z-index: 9;
 }
