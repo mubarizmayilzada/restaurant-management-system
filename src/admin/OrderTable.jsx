@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import '../styles/scss/main.scss';
 import TotalBudget from '../components/TotalBudget';
+import { useState } from 'react';
 
 const OrderTable = ({createOrder,total}) => {
-
+  const [statusWord,setStatusWord] = useState(true);
+  const [setStatus,setSetStatus] = useState(true);
 
 const detectedPrice = (key) => {
   switch (key) {
@@ -27,6 +29,12 @@ const detectedPrice = (key) => {
       break;
   }
 }
+  const handleCancel = () =>{
+    setStatusWord(!statusWord);
+  }
+  const handleSetStatus = () =>{
+    setSetStatus(false);
+  }
 
     return (
       <>
@@ -85,6 +93,12 @@ const detectedPrice = (key) => {
                   >
                     status
                   </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-indigo-600 uppercase tracking-wider dark:text-indigo-100"
+                  >
+                    setStatus
+                  </th>
                   <th scope="col" className="relative px-6 py-3">
                     <span className="sr-only">#</span>
                   </th>
@@ -133,15 +147,22 @@ const detectedPrice = (key) => {
                       } AZN
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {item.price}
+                      11:50 AM
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      
+                      <span className={`p-1 px-2 cursor-pointer ${statusWord ? `bg-indigo-200` : `bg-red-200`} text-indigo-900 rounded-full`}>
+                        {!statusWord ? `${statusWord ? 'waiting' : 'cancelled'}` : `${!setStatus ? 'done' : 'waiting'}`}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <span onClick={handleSetStatus} className={`p-1 px-2 cursor-pointer ${statusWord ? `bg-indigo-200` : `bg-red-200`} text-indigo-900 rounded-full`}>
+                        {statusWord ? 'ready' : 'cancelled'}
+                      </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <Link to="/details" className="p-1 px-2 rounded-full bg-indigo-200 text-gray-700 dark:text-indigo-600  hover:text-indigo-900">
-                        İmtina
-                      </Link>
+                      <span onClick={setStatus ? handleCancel : ' ' } className="cursor-pointer p-1 px-2 rounded-full bg-blue-300 text-gray-700 dark:text-indigo-600  hover:text-indigo-900">
+                      {!statusWord ? 'pull back' : 'cancel'}
+                      </span>
                     </td>
                   </tr>
                 ))}
