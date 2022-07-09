@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/scss/main.scss';
+import Services from '../components/Services';
 import DataOfDay from './DataOfDay';
 import TotalBudget from './TotalBudget';
+import HeroSection from '../components/HeroSection';
 
 
 
@@ -39,7 +41,13 @@ const Table = () => {
       const deta = new Date();
     return (
       <>
-      
+
+            <div className="font-inter bg:white dark:bg-slate-900">
+            <div className='max-w-5xl mx-auto w-11/12'>
+            <HeroSection/>
+            <Services/>
+            </div>
+            </div>
 
     <div className="table-wrapper flex flex-col">
 

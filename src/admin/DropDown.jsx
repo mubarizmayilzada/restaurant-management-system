@@ -29,10 +29,10 @@ const handleClick2 = (e) => {
           </div>
 
           {showOptions && (
-            <div class="custom-drop-wrapper origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="+2">
+            <div class="custom-drop-wrapper origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
             <div class="py-1" role="none">
                 {options && options.map(options => (
-                    <div key={options} onClick={handleClick2} class="custom-list-item hover:bg-indigo-50 text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
+                    <div key={options} onClick={handleClick2} class="custom-list-item hover:bg-indigo-50 text-gray-700 block px-4 py-2 text-sm" role="menuitem" id="menu-item-0">
                         {options}
                     </div>
                 ))}

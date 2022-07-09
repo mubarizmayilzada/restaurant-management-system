@@ -3,10 +3,13 @@ import AddForm from './AddForm'
 import OrderTable from './OrderTable'
 
 const Admin = () => {
+
+
+  const {render, createOrder, total} = AddForm();
   return (
     <div className="admin">
-      <AddForm/>
-      <OrderTable/>
+      {render}
+      <OrderTable total={total} createOrder={createOrder}/>
     </div>
   )
 }
