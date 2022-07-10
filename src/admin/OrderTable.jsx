@@ -1,11 +1,27 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../styles/scss/main.scss';
 import TotalBudget from '../components/TotalBudget';
-import { useState } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+
+
 
 const OrderTable = ({createOrder,total}) => {
+
   const [statusWord,setStatusWord] = useState(true);
   const [setStatus,setSetStatus] = useState(true);
+  const [table,setTable] = useState('');
+  const [worker,setWorker] = useState('');
+  const [product,setProduct] = useState('');
+  const [count,setCount] = useState(1);
+  const [price,setPrice] = useState(0);
+  const navigate = useNavigate();
+
+
+
+
+
+
 
 const detectedPrice = (key) => {
   switch (key) {
@@ -36,6 +52,45 @@ const detectedPrice = (key) => {
     setSetStatus(false);
   }
     const dateNow = new Date();
+
+
+
+  
+  
+
+  
+  
+    const handleOrderSubmit = (e) =>{
+      
+    createOrder.map((item)=>(
+      setTable(item.table),
+      setWorker(item.worker),
+      setProduct(item.product),
+      setCount(item.count),
+      setPrice(detectedPrice(item.meal) * item.count )
+      ))
+      const data = {
+        "table": table,
+        "worker": worker,
+        "product": product,
+        "count": count,
+        "price": price,
+        "date": table,
+        "status": setStatus
+      }
+      e.preventDefault();
+      axios.post("http://localhost:3500/orders",data)
+      .then(navigate('/'))  
+    }
+    
+
+
+
+
+
+
+
+
     return (
       <>
     <div className="table-wrapper flex flex-col">
@@ -172,6 +227,9 @@ const detectedPrice = (key) => {
         </div>
       </div>
       <TotalBudget price={total}></TotalBudget>
+      <button type='submit' onClick={handleOrderSubmit} className='custom-button'>
+          Order Submit 
+      </button>
     </div>
     </>
   )

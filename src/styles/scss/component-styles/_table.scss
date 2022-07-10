@@ -8,3 +8,16 @@
         margin: 0px;
     }
 }
+
+.custom-button{
+    padding: 10px;
+    border: 1px solid indigo;
+    border-radius: 10px;
+    color: indigo;
+    transition: all .3s ease;
+    margin: 10px;
+    &:hover{
+        background-color: indigo;
+        color: white;
+    }
+}
