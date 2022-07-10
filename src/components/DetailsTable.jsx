@@ -1,36 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import '../styles/scss/main.scss';
-import Services from '../components/Services';
-import DataOfDay from './DataOfDay';
-import TotalBudget from './TotalBudget';
-import HeroSection from '../components/HeroSection';
-import axios from 'axios';
+import React from 'react'
+import TotalBudget from '../components/TotalBudget';
 
-
-
-const Table = () => {
-  const [tableData, setTableData] = useState([]);
-  useEffect(()=>{
-    axios.get("http://localhost:3500/orders")
-    .then((res)=>{
-      setTableData(res.data);
-    })
-  },[])
-
-    return (
-      <>
-
-            <div className="font-inter bg:white dark:bg-slate-900">
-            <div className='max-w-5xl mx-auto w-11/12'>
-            <HeroSection/>
-            <Services/>
-            </div>
-            </div>
-
+const DetailsTable = () => {
+  return (
     <div className="table-wrapper flex flex-col">
-
-			<DataOfDay/>
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div className="shadow overflow-hidden border-b border-gray-300 sm:rounded-lg">
@@ -47,19 +20,13 @@ const Table = () => {
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-indigo-600 uppercase tracking-wider dark:text-indigo-100"
                   >
-                    Table
+                    Meal
                   </th>
                   <th
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-indigo-600 uppercase tracking-wider dark:text-indigo-100"
                   >
-                    Worker
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-indigo-600 uppercase tracking-wider dark:text-indigo-100"
-                  >
-                    Status
+                    Count
                   </th>
                   <th
                     scope="col"
@@ -73,8 +40,11 @@ const Table = () => {
                   >
                     Date
                   </th>
-                  <th scope="col" className="relative px-6 py-3">
-                    <span className="sr-only">Details</span>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-indigo-600 uppercase tracking-wider dark:text-indigo-100"
+                  >
+                    status
                   </th>
                 </tr>
               </thead>
@@ -84,19 +54,26 @@ const Table = () => {
                 
                 
                 
-                {tableData.map(item => (
-                  <tr key={item.id}>
+                {/* {createOrder.map((item,index) => (
+                  
+                  <tr key={index}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         <div>
-                         {item.id}
+                         1
                         </div>
                       </div>
                     </td>
 
 
                     <td className="px-6 py-4 whitespace-nowrap">
-                        {item.table}
+                      {item.table ? item.table : 'unkown'}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      {item.worker ? item.worker : 'unkown'}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      {item.meal}
                     </td>
 
 
@@ -105,41 +82,42 @@ const Table = () => {
                         className="px-2 inline-flex text-xs leading-5
                       font-semibold text-gray-700"
                       >
-                        {item.worker}
+                        {item.count}
                       </span>
                     </td>
-
-
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {item.status}
+                      {
+                       detectedPrice(item.meal) * item.count 
+                      } AZN
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {item.price} AZN
+                      {dateNow.toUTCString().split(' ')[4]} AM
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {item.date}
+                      <span className={`p-1 px-2 cursor-pointer ${statusWord ? `bg-indigo-200` : `bg-red-200`} text-indigo-900 rounded-full`}>
+                        {!statusWord ? `${statusWord ? 'waiting' : 'cancelled'}` : `${!setStatus ? 'done' : 'waiting'}`}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <span onClick={handleSetStatus} className={`p-1 px-2 cursor-pointer ${statusWord ? `bg-indigo-200` : `bg-red-200`} text-indigo-900 rounded-full`}>
+                        {statusWord ? 'ready' : 'cancelled'}
+                      </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <Link to="/details" className="p-1 px-2 rounded-full bg-indigo-200 text-gray-700 dark:text-indigo-600  hover:text-indigo-900">
-                        Details
-                      </Link>
+                      <span onClick={setStatus ? handleCancel : ' ' } className="cursor-pointer p-1 px-2 rounded-full bg-blue-300 text-gray-700 dark:text-indigo-600  hover:text-indigo-900">
+                      {!statusWord ? 'pull back' : 'cancel'}
+                      </span>
                     </td>
                   </tr>
-                ))}
-
-
-
-
+                ))} */}
               </tbody>
             </table>
           </div>
         </div>
       </div>
-
-      <TotalBudget></TotalBudget>
-    </div>
-    </>
+      <TotalBudget></TotalBudget>    
+      </div>
   )
 }
 
-export default Table
+export default DetailsTable

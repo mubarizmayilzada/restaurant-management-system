@@ -22,5 +22,8 @@
     { "id": 3, "name": "table-3"},
     { "id": 4, "name": "table-4"},
     { "id": 5, "name": "table-5"}
+  ],
+  "orders": [
+    { "id": 1, "table": "table-1", "worker": "Mubariz", "product": "Yumurta", "count": 1, "price": 2, "date": "2015-01-01", "status": "done"}
   ]
 }

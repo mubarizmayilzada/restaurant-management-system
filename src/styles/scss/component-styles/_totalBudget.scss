@@ -49,4 +49,13 @@
             }
         }     
     }
+
+    @media screen and (max-width:400px){
+        &__3{
+            display: block !important;
+            h3{
+                display: block;
+            }
+        }     
+    }
 }

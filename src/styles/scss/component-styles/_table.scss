@@ -2,3 +2,9 @@
     margin: 50px;
     margin-bottom: 0;
 }
+
+@media screen and (max-width: 500px){
+    .table-wrapper{
+        margin: 0px;
+    }
+}

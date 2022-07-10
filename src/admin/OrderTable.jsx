@@ -35,7 +35,7 @@ const detectedPrice = (key) => {
   const handleSetStatus = () =>{
     setSetStatus(false);
   }
-
+    const dateNow = new Date();
     return (
       <>
     <div className="table-wrapper flex flex-col">
@@ -147,7 +147,7 @@ const detectedPrice = (key) => {
                       } AZN
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      11:50 AM
+                      {dateNow.toUTCString().split(' ')[4]} AM
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       <span className={`p-1 px-2 cursor-pointer ${statusWord ? `bg-indigo-200` : `bg-red-200`} text-indigo-900 rounded-full`}>
@@ -166,10 +166,6 @@ const detectedPrice = (key) => {
                     </td>
                   </tr>
                 ))}
-
-
-
-
               </tbody>
             </table>
           </div>
