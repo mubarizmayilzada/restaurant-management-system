@@ -10,11 +10,24 @@ import axios from 'axios';
 
 
 const Table = () => {
-  const [tableData, setTableData] = useState([]);
+  const [tableData, setTableData] = useState([{
+    "table": "table-1",
+    "worker": "Mubariz",
+    "product": "Yumurta",
+    "count": 1,
+    "price": 2,
+    "date": "2015-01-01",
+    "status": "done"
+  }]);
+
+
   useEffect(()=>{
     axios.get("http://localhost:3500/orders")
     .then((res)=>{
-      setTableData(res.data);
+      // setTableData(res.data);
+     res.data.map((item)=>{
+        setTableData(item.order);
+      })
     })
   },[])
 
@@ -80,16 +93,13 @@ const Table = () => {
               </thead>
               <tbody className="bg-white divide-y divide-gray-200 dark:bg-indigo-100 dark:divide-gray-300">
                 
-                
-                
-                
-                
-                {tableData.map(item => (
-                  <tr key={item.id}>
+              
+                {tableData.map((item,index) => (
+                  <tr key={index}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         <div>
-                         {item.id}
+                         {index + 1}
                         </div>
                       </div>
                     </td>

@@ -17,10 +17,13 @@ const AddForm = () => {
 
     const [createOrder, setCreateOrder] = useState([]);
     const [countValue, setCountValue] = useState(1);
+    const [countPrice, setCountPrice] = useState(1);
     const [priceHolder,setPriceHolder] = useState([0]);
     const [closeDropDown,setCloseDropDown] = useState(true);
     const [closeDropDownWorker,setCloseDropDownWorker] = useState(true);
     const [total,setTotal] = useState(0);
+    const [statusbar,setStatusbar] = useState('waiting');
+    const [cancel,setCancel] = useState(false);
     const mealCount = useRef(1);
 
     useEffect(()=>{
@@ -28,6 +31,7 @@ const AddForm = () => {
         .then((res)=>{
             setMeals(res.data);
         })
+        console.log(mealCount.current)
     },[])
 
     useEffect(()=>{
@@ -71,11 +75,14 @@ const AddForm = () => {
         meal: selectedMeal,
         table: selectedTable,
         worker: selectedWorker,
-        count: countValue
-        // price: total
+        count: countValue,
+        id: Math.random(10),
+        statusbar: statusbar,
+        isCancel: cancel
     };
     const handleMealCount = () => {
         setCountValue(mealCount.current.value);
+        setCountPrice(mealCount.current.value);
     }
 
     const handleSubmit = (e) => {
@@ -85,6 +92,9 @@ const AddForm = () => {
             setPriceHolder([...priceHolder, meal.price]) : ''       
         ));
         setCreateOrder([...createOrder,createdOrderData]);
+        setStatusbar('wainting');
+        setCancel(false);
+
     };
 
 
@@ -101,6 +111,9 @@ const AddForm = () => {
   return {
     total,
     createOrder,
+    setStatusbar,
+    setCreateOrder,
+    setCancel,
     render:(
     <div className='addform-wrapper'>
         <form className='custom-form' action="">
@@ -110,15 +123,14 @@ const AddForm = () => {
             <DropDown closeDropDown={closeDropDown} options={tableName} setSelectedWord={setSelectedTable} title="table"/>
             <input  disabled className='custom-input' value={selectedWorker} type="text" placeholder='worker'/>
             <DropDown closeDropDownWorker={closeDropDownWorker} options={workerName} setSelectedWord={setSelectedWorker} title="worker"/>
-            <input ref={mealCount} onChange={handleMealCount} className='custom-input custom-input__number' type="number" min={1} placeholder='count'/>
+            <input ref={mealCount} value={countPrice} onChange={handleMealCount} className='custom-input custom-input__number' type="number" min={1} placeholder='count'/>
             <button type='submit' className='custom-button' onClick={!selectedMeal || !selectedWorker || !selectedTable ? (e) =>{e.preventDefault()} : handleSubmit }>
                 Create
             </button>
             <span className='custom-price'>
                 Price: {
                         meals.map(meal => (
-                            meal.title === selectedMeal ?
-                            meal.price : '' 
+                            meal.title === selectedMeal ? ( mealCount.current.value === 0 ? meal.price : (meal.price * mealCount.current.value) ) : ''
                         ))
                 }
             </span>

@@ -5,11 +5,11 @@ import OrderTable from './OrderTable'
 const Admin = () => {
 
 
-  const {render, createOrder, total} = AddForm();
+  const {render, createOrder, total,setStatusbar,setCreateOrder,statusbar,setCancel} = AddForm();
   return (
     <div className="admin">
       {render}
-      <OrderTable total={total} createOrder={createOrder}/>
+      <OrderTable setCancel={setCancel} setCreateOrder={setCreateOrder} setStatusbar={setStatusbar} total={total} createOrder={createOrder}/>
     </div>
   )
 }

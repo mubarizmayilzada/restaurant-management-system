@@ -83,44 +83,19 @@
   ],
   "orders": [
     {
-      "id": 1,
-      "table": "table-1",
-      "worker": "Mubariz",
-      "product": "Yumurta",
-      "count": 1,
-      "price": 2,
-      "date": "2015-01-01",
-      "status": "done"
-    },
-    {
-      "table": "",
-      "worker": "",
-      "product": "",
-      "count": 1,
-      "price": 0,
-      "date": "",
-      "status": true,
-      "id": 2
-    },
-    {
-      "table": "",
-      "worker": "",
-      "product": "",
-      "count": 1,
-      "price": 0,
-      "date": "",
-      "status": true,
-      "id": 3
-    },
-    {
-      "table": "",
-      "worker": "",
-      "product": "",
-      "count": 1,
-      "price": 0,
-      "date": "",
-      "status": true,
-      "id": 4
+      "order":[
+        {
+          "table": "table-1",
+          "worker": "Mubariz",
+          "product": "Yumurta",
+          "count": 1,
+          "price": 2,
+          "date": "2015-01-01",
+          "status": "done"
+        }
+      ]
     }
+
+    
   ]
 }

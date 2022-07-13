@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 
 
-const OrderTable = ({createOrder,total}) => {
+const OrderTable = ({createOrder,total,setStatusbar,setCreateOrder,setCancel}) => {
 
   const [statusWord,setStatusWord] = useState(true);
   const [setStatus,setSetStatus] = useState(true);
@@ -39,12 +39,29 @@ const detectedPrice = (key) => {
       break;
   }
 }
-  const handleCancel = () =>{
-    setStatusWord(!statusWord);
+  const handleCancel = (id) =>{
+    // setStatusWord(!statusWord);
+
+    createOrder.map((item)=>{
+      (id === item.id) && (item.isCancel = true);
+  })
+  setCreateOrder([...createOrder]);
+
   }
-  const handleSetStatus = () =>{
-    setSetStatus(false);
+
+
+
+  const handleReady = (id) =>{
+    createOrder.map((item)=>{
+      (id === item.id) && (item.statusbar = 'done');
+  })
+  setCreateOrder([...createOrder]);
   }
+
+
+
+
+
     const dateNow = new Date();
 
 
@@ -63,18 +80,23 @@ const detectedPrice = (key) => {
       setCount(item.count),
       setPrice(detectedPrice(item.meal) * item.count )
       ))
+      
       const data = {
-        "table": table,
-        "worker": worker,
-        "product": product,
-        "count": count,
-        "price": price,
-        "date": table,
-        "status": setStatus
+        "order":[
+          {
+            "table": table,
+            "worker": worker,
+            "product": [product],
+            "count": count,
+            "price": price,
+            "date": table,
+            "status": setStatus
+          }
+        ]
       }
       e.preventDefault();
       axios.post("http://localhost:3500/orders",data)
-      .then(navigate('/'))  
+      // .then(navigate('/'))  
     }
     
 
@@ -165,7 +187,7 @@ const detectedPrice = (key) => {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         <div>
-                         1
+                        {index + 1}
                         </div>
                       </div>
                     </td>
@@ -199,18 +221,18 @@ const detectedPrice = (key) => {
                       {dateNow.toUTCString().split(' ')[4]} AM
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      <span className={`p-1 px-2 cursor-pointer ${statusWord ? `bg-indigo-200` : `bg-red-200`} text-indigo-900 rounded-full`}>
-                        {!statusWord ? `${statusWord ? 'waiting' : 'cancelled'}` : `${!setStatus ? 'done' : 'waiting'}`}
+                      <span className={`p-1 px-2 ${item.isCancel ? `text-red-700` : `text-indigo-800`}`}>
+                        {item.isCancel ? 'cancelled' : item.statusbar}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      <span onClick={handleSetStatus} className={`p-1 px-2 cursor-pointer ${statusWord ? `bg-indigo-200` : `bg-red-200`} text-indigo-900 rounded-full`}>
-                        {statusWord ? 'ready' : 'cancelled'}
+                      <span onClick={ item.isCancel ? ' ' : ()=>{handleReady(item.id)}  } className={`p-1 px-2 cursor-pointer ${item.isCancel ? `bg-red-200` : `bg-indigo-200`} text-indigo-900 rounded-full`}>
+                        {item.isCancel ? 'cancelled' : 'setReady'}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <span onClick={setStatus ? handleCancel : ' ' } className="cursor-pointer p-1 px-2 rounded-full bg-blue-300 text-gray-700 dark:text-indigo-600  hover:text-indigo-900">
-                      {!statusWord ? 'pull back' : 'cancel'}
+                      <span onClick={item.statusbar !== 'done' ? ()=>{handleCancel(item.id)} : ' ' } className="cursor-pointer p-1 px-2 rounded-full bg-blue-300 text-gray-700 dark:text-indigo-600  hover:text-indigo-900">
+                      {(item.statusbar === 'done' ? 'non-cancel' : (item.isCancel ? 'cancelled' : 'cancel'))}
                       </span>
                     </td>
                   </tr>
