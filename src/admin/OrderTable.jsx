@@ -12,7 +12,7 @@ const OrderTable = ({createOrder,total,setStatusbar,setCreateOrder,setCancel}) =
   const [setStatus,setSetStatus] = useState(true);
   const [table,setTable] = useState('');
   const [worker,setWorker] = useState('');
-  const [product,setProduct] = useState('');
+  const [product,setProduct] = useState([]);
   const [count,setCount] = useState(1);
   const [price,setPrice] = useState(0);
   const navigate = useNavigate();
@@ -40,8 +40,6 @@ const detectedPrice = (key) => {
   }
 }
   const handleCancel = (id) =>{
-    // setStatusWord(!statusWord);
-
     createOrder.map((item)=>{
       (id === item.id) && (item.isCancel = true);
   })
@@ -76,13 +74,13 @@ const detectedPrice = (key) => {
     createOrder.map((item)=>(
       setTable(item.table),
       setWorker(item.worker),
-      setProduct(item.product),
+      setProduct(item.meal),
       setCount(item.count),
       setPrice(detectedPrice(item.meal) * item.count )
       ))
       
       const data = {
-        "order":[
+        "order":[ 
           {
             "table": table,
             "worker": worker,
