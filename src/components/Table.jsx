@@ -10,26 +10,18 @@ import axios from 'axios';
 
 
 const Table = () => {
-  const [tableData, setTableData] = useState([{
-    "table": "table-1",
-    "worker": "Mubariz",
-    "product": "Yumurta",
-    "count": 1,
-    "price": 2,
-    "date": "2015-01-01",
-    "status": "done"
-  }]);
+  const [tableData, setTableData] = useState([]);
 
 
   useEffect(()=>{
     axios.get("http://localhost:3500/orders")
     .then((res)=>{
       // setTableData(res.data);
-     res.data.map((item)=>{
-        setTableData(item.order);
-      })
+        setTableData(res.data);
     })
+
   },[])
+  console.log(tableData)
 
     return (
       <>
@@ -106,7 +98,7 @@ const Table = () => {
 
 
                     <td className="px-6 py-4 whitespace-nowrap">
-                        {item.table}
+                        {item.order.table}
                     </td>
 
 
@@ -115,22 +107,22 @@ const Table = () => {
                         className="px-2 inline-flex text-xs leading-5
                       font-semibold text-gray-700"
                       >
-                        {item.worker}
+                        {item.order.worker}
                       </span>
                     </td>
 
 
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {item.status}
+                      {item.order.status}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {item.price} AZN
+                      {item.order.price} AZN
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {item.date}
+                      {item.order.date}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <Link to="/details" className="p-1 px-2 rounded-full bg-indigo-200 text-gray-700 dark:text-indigo-600  hover:text-indigo-900">
+                      <Link to={`/details/${item.id}`} className="p-1 px-2 rounded-full bg-indigo-200 text-gray-700 dark:text-indigo-600  hover:text-indigo-900">
                         Details
                       </Link>
                     </td>

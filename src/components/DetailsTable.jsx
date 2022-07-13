@@ -1,7 +1,7 @@
 import React from 'react'
 import TotalBudget from '../components/TotalBudget';
 
-const DetailsTable = () => {
+const DetailsTable = ({order}) => {
   return (
     <div className="table-wrapper flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -54,23 +54,23 @@ const DetailsTable = () => {
                 
                 
                 
-                {/* {createOrder.map((item,index) => (
+               {order.order?.product?.map((item,index) => (
                   
                   <tr key={index}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         <div>
-                         1
+                         {item.id}
                         </div>
                       </div>
                     </td>
 
 
                     <td className="px-6 py-4 whitespace-nowrap">
-                      {item.table ? item.table : 'unkown'}
+                      {item.table}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      {item.worker ? item.worker : 'unkown'}
+                      {item.worker}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       {item.meal}
@@ -87,35 +87,25 @@ const DetailsTable = () => {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {
-                       detectedPrice(item.meal) * item.count 
+                       item.price
                       } AZN
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {dateNow.toUTCString().split(' ')[4]} AM
+                      75:45678;845
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      <span className={`p-1 px-2 cursor-pointer ${statusWord ? `bg-indigo-200` : `bg-red-200`} text-indigo-900 rounded-full`}>
-                        {!statusWord ? `${statusWord ? 'waiting' : 'cancelled'}` : `${!setStatus ? 'done' : 'waiting'}`}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      <span onClick={handleSetStatus} className={`p-1 px-2 cursor-pointer ${statusWord ? `bg-indigo-200` : `bg-red-200`} text-indigo-900 rounded-full`}>
-                        {statusWord ? 'ready' : 'cancelled'}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <span onClick={setStatus ? handleCancel : ' ' } className="cursor-pointer p-1 px-2 rounded-full bg-blue-300 text-gray-700 dark:text-indigo-600  hover:text-indigo-900">
-                      {!statusWord ? 'pull back' : 'cancel'}
+                      <span className={`p-1 px-2 cursor-pointer text-indigo-900 rounded-full`}>
+                        {item.tatus}
                       </span>
                     </td>
                   </tr>
-                ))} */}
+                ))}
               </tbody>
             </table>
           </div>
         </div>
       </div>
-      <TotalBudget></TotalBudget>    
+      <TotalBudget price={order.order?.price}></TotalBudget>    
       </div>
   )
 }

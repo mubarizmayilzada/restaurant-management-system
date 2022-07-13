@@ -45,9 +45,8 @@ const App = () => {
               <BrowserRouter>
                 <Routes>
                   <Route path='/' exact element={<Table/>}/>
-                  <Route path='/details' exact element={<Details/>}/>
+                  <Route path='/details/:id' exact element={<Details/>}/>
                   <Route path='/admin' exact element={<Admin/>}/>
-
                 </Routes>
               </BrowserRouter>
             </div>

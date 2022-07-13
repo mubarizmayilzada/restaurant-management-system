@@ -26,6 +26,28 @@ const AddForm = () => {
     const [cancel,setCancel] = useState(false);
     const mealCount = useRef(1);
 
+    const detectedPrice = (key) => {
+        switch (key) {
+          case 'Dolma':
+              return 6;
+          case 'Yumurta':
+              return 2;
+            case 'Kabab':
+              return 10;
+            case 'Sac':
+              return 6;
+            case 'Baliq':
+              return 8;
+            case 'Merci':
+              return 3;
+            case 'Pizza':
+              return 10;
+            case 'Nar qovurmasi':
+              return 15;
+          default:
+            break;
+        }
+      }
     useEffect(()=>{
         axios.get("http://localhost:3500/meals")
         .then((res)=>{
@@ -78,7 +100,8 @@ const AddForm = () => {
         count: countValue,
         id: Math.random(10),
         statusbar: statusbar,
-        isCancel: cancel
+        isCancel: cancel,
+        price:  detectedPrice(selectedMeal) * countValue
     };
     const handleMealCount = () => {
         setCountValue(mealCount.current.value);
@@ -114,6 +137,7 @@ const AddForm = () => {
     setStatusbar,
     setCreateOrder,
     setCancel,
+    detectedPrice,
     render:(
     <div className='addform-wrapper'>
         <form className='custom-form' action="">

@@ -83,66 +83,47 @@
   ],
   "orders": [
     {
-      "id": 1,
-      "order": [
-        {
-          "table": "table-1",
-          "worker": "Mubariz",
-          "product": "Yumurta",
-          "count": 1,
-          "price": 2,
-          "date": "2015-01-01",
-          "status": "done"
-        }
-      ]
-    },
-    {
-      "order": [
-        {
-          "table": "",
-          "worker": "",
-          "product": [
-            []
-          ],
-          "count": 1,
-          "price": 0,
-          "date": "",
-          "status": true
-        }
-      ],
-      "id": 2
-    },
-    {
-      "order": [
-        {
-          "table": "table-2",
-          "worker": "Alice",
-          "product": [
-            "Kabab"
-          ],
-          "count": 1,
-          "price": 10,
-          "date": "table-2",
-          "status": true
-        }
-      ],
-      "id": 3
-    },
-    {
-      "order": [
-        {
-          "table": "table-2",
-          "worker": "Alice",
-          "product": [
-            "Kabab"
-          ],
-          "count": 1,
-          "price": 10,
-          "date": "table-2",
-          "status": true
-        }
-      ],
-      "id": 4
+      "order": {
+        "table": "table-2",
+        "worker": "Nisa",
+        "product": [
+          {
+            "meal": "Dolma",
+            "table": "table-2",
+            "worker": "Nisa",
+            "count": 1,
+            "id": 0.12701189397562773,
+            "statusbar": "waiting",
+            "isCancel": false,
+            "price": 6
+          },
+          {
+            "meal": "Dolma",
+            "table": "table-2",
+            "worker": "Nisa",
+            "count": 1,
+            "id": 0.742005577238243,
+            "statusbar": "wainting",
+            "isCancel": false,
+            "price": 6
+          },
+          {
+            "meal": "Dolma",
+            "table": "table-2",
+            "worker": "Nisa",
+            "count": 1,
+            "id": 0.5391317071475381,
+            "statusbar": "wainting",
+            "isCancel": false,
+            "price": 6
+          }
+        ],
+        "price": 18,
+        "date": "",
+        "status": true,
+        "id": 0.6082505852361615
+      },
+      "id": 1
     }
   ]
 }
