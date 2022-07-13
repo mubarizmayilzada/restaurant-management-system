@@ -18,7 +18,8 @@ const AddForm = () => {
     const [createOrder, setCreateOrder] = useState([]);
     const [countValue, setCountValue] = useState(1);
     const [priceHolder,setPriceHolder] = useState([0]);
-    // const [multiple,setMultiple] = useState(0);
+    const [closeDropDown,setCloseDropDown] = useState(true);
+    const [closeDropDownWorker,setCloseDropDownWorker] = useState(true);
     const [total,setTotal] = useState(0);
     const mealCount = useRef(1);
 
@@ -86,20 +87,29 @@ const AddForm = () => {
         setCreateOrder([...createOrder,createdOrderData]);
     };
 
-    
+
+
+    useEffect(() => {
+        setCloseDropDownWorker(!closeDropDownWorker);
+    },[selectedWorker])
+
+
+    useEffect(() => {
+        setCloseDropDown(!closeDropDown);
+    },[selectedTable])
+
   return {
     total,
     createOrder,
-
     render:(
     <div className='addform-wrapper'>
         <form className='custom-form' action="">
-            <input disabled className='custom-input' value={selectedMeal} type="text" placeholder='meal'/>
+            <input  disabled className='custom-input' value={selectedMeal} type="text" placeholder='meal'/>
             <DropDown setSelectedWord={setSelectedMeal} options={mealName} title="meal"/>
-            <input disabled className='custom-input' value={selectedTable } type="text" placeholder='table'/>
-            <DropDown options={tableName} setSelectedWord={setSelectedTable} title="table"/>
-            <input disabled className='custom-input' value={selectedWorker} type="text" placeholder='worker'/>
-            <DropDown options={workerName} setSelectedWord={setSelectedWorker} title="worker"/>
+            <input  disabled className='custom-input' value={selectedTable } type="text" placeholder='table'/>
+            <DropDown closeDropDown={closeDropDown} options={tableName} setSelectedWord={setSelectedTable} title="table"/>
+            <input  disabled className='custom-input' value={selectedWorker} type="text" placeholder='worker'/>
+            <DropDown closeDropDownWorker={closeDropDownWorker} options={workerName} setSelectedWord={setSelectedWorker} title="worker"/>
             <input ref={mealCount} onChange={handleMealCount} className='custom-input custom-input__number' type="number" min={1} placeholder='count'/>
             <button type='submit' className='custom-button' onClick={!selectedMeal || !selectedWorker || !selectedTable ? (e) =>{e.preventDefault()} : handleSubmit }>
                 Create
@@ -108,7 +118,7 @@ const AddForm = () => {
                 Price: {
                         meals.map(meal => (
                             meal.title === selectedMeal ?
-                            meal.price : ''       
+                            meal.price : '' 
                         ))
                 }
             </span>

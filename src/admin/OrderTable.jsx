@@ -17,12 +17,6 @@ const OrderTable = ({createOrder,total}) => {
   const [price,setPrice] = useState(0);
   const navigate = useNavigate();
 
-
-
-
-
-
-
 const detectedPrice = (key) => {
   switch (key) {
     case 'Dolma':

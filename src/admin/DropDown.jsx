@@ -2,7 +2,7 @@ import React from 'react'
 import '../styles/scss/main.scss';
 import { useState } from 'react'
 
-const DropDown = ({options,title,setSelectedWord,setSelectedTable,setSelectedWorker}) => {
+const DropDown = ({options,title,setSelectedWord,setSelectedTable,setSelectedWorker,closeDropDown,closeDropDownWorker}) => {
 const [showOptions,setShowOptions] = useState(false);
 
 const handleClick = () => {
@@ -29,6 +29,8 @@ const handleClick2 = (e) => {
           </div>
 
           {showOptions && (
+            
+            (closeDropDownWorker && (title === 'worker')) || (closeDropDown && (title === 'table')) ? '' : (
             <div class="custom-drop-wrapper origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
             <div class="py-1" role="none">
                 {options && options.map(options => (
@@ -38,7 +40,12 @@ const handleClick2 = (e) => {
                 ))}
             </div>
           </div>
-          )}
+          )
+          
+          )
+          
+          
+          }
   
         </div>
         </div>
