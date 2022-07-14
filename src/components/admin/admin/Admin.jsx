@@ -1,10 +1,9 @@
 import React from 'react'
-import AddForm from './AddForm'
-import OrderTable from './OrderTable'
+import AddForm from '../addForm/AddForm'
+import OrderTable from '../orderTable/OrderTable'
+import './admin.scss';
 
 const Admin = () => {
-
-
   const {render, createOrder, total,setCreateOrder,data,detectedPrice} = AddForm();
   return (
     <div className="admin">

@@ -3,8 +3,8 @@ import React from 'react'
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import '../styles/scss/main.scss';
-import DropDown from './DropDown';
+import './addForm.scss';
+import DropDown from '../dropDown/DropDown';
 
 const AddForm = () => {
     const [meals, setMeals] = useState([{ "id": 1, "title": "Dolma", "price": 6}]);

@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/scss/main.scss';
+import './dropDown.scss';
 import { useState } from 'react'
 
 const DropDown = ({options,title,setSelectedWord,setSelectedTable,setSelectedWorker,closeDropDown,closeDropDownWorker}) => {

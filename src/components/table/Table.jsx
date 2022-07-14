@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/scss/main.scss';
-import Services from '../components/Services';
-import DataOfDay from './DataOfDay';
-import TotalBudget from './TotalBudget';
-import HeroSection from '../components/HeroSection';
+import Services from '../servicesSection/Services';
+import DataOfDay from '../dataOfDay/DataOfDay';
+import TotalBudget from '../totalBudget/TotalBudget';
+import HeroSection from '../heroSection/HeroSection';
 import axios from 'axios';
-
+import './table.scss';
 
 
 const Table = () => {

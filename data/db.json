@@ -82,6 +82,51 @@
     }
   ],
   "orders": [
-
+    {
+      "order": {
+        "table": "table-2",
+        "worker": "Nisa",
+        "product": [
+          {
+            "meal": "Dolma",
+            "table": "table-2",
+            "worker": "Nisa",
+            "count": "3",
+            "id": 0.972368266720486,
+            "statusbar": "done",
+            "isCancel": false,
+            "price": 18,
+            "dateNow": "00:44:23"
+          },
+          {
+            "meal": "Dolma",
+            "table": "table-2",
+            "worker": "Nisa",
+            "count": "3",
+            "id": 0.9014757847527015,
+            "statusbar": "waiting",
+            "isCancel": true,
+            "price": 18,
+            "dateNow": "00:44:28"
+          },
+          {
+            "meal": "Dolma",
+            "table": "table-2",
+            "worker": "Nisa",
+            "count": "3",
+            "id": 0.9124651428399988,
+            "statusbar": "waiting",
+            "isCancel": false,
+            "price": 18,
+            "dateNow": "00:44:31"
+          }
+        ],
+        "price": 54,
+        "date": "00:44:11",
+        "status": "waiting",
+        "id": 0.04534517623836831
+      },
+      "id": 1
+    }
   ]
 }

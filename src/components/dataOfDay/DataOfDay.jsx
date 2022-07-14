@@ -1,6 +1,7 @@
 import React from 'react'
-import '../styles/scss/main.scss';
-import SectionTitle from './SectionTitle';
+import SectionTitle from '../sectionTitle/SectionTitle';
+import './dataOfDay.scss';
+
 
 const DataOfDay = ({profitDone,totalOrderCount}) => {
   return (

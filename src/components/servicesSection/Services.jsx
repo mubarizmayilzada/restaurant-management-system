@@ -1,7 +1,7 @@
 import React from 'react';
-import services from '../mock-data/services';
-import SectionTitle from './SectionTitle';
-import ServiceItem from './ServicesItem';
+import services from '../../mock-data/services';
+import SectionTitle from '../sectionTitle/SectionTitle';
+import ServiceItem from '../servicesItem/ServicesItem';
 
 function Services() {
 	return (

@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import "../styles/scss/main.scss";
-import TotalBudget from "../components/TotalBudget";
+import TotalBudget from "../../totalBudget/TotalBudget";
 import axios from "axios";
 import { useState } from "react";
 

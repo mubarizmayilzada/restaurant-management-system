@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/scss/main.scss';
+import './totalBudget.scss';
 
 const DataOfDay = ({profitAll}) => {
   return (

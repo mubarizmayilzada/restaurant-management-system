@@ -1,5 +1,5 @@
 import React from 'react'
-import TotalBudget from '../components/TotalBudget';
+import TotalBudget from '../totalBudget/TotalBudget';
 
 const DetailsTable = ({order}) => {
   return (

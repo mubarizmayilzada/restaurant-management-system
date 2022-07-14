@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import HeroSection from './components/HeroSection'
-import Services from './components/Services';
-import Table from './components/Table';
+import Table from './components/table/Table';
 import {BrowserRouter,Routes, Route} from 'react-router-dom';
-import './styles/scss/main.scss';
-import Details from './components/Details';
-import Admin from './admin/Admin';
+import Details from './components/details/Details';
+import Admin from './components/admin/admin/Admin';
 
 const App = () => {
 

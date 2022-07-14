@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import "../styles/scss/main.scss";
-import DetailsTable from "./DetailsTable";
-import SectionTitle from "./SectionTitle";
+import DetailsTable from "../detailsTable/DetailsTable";
+import SectionTitle from "../sectionTitle/SectionTitle";
+import './details.scss';
 
 const Details = () => {
   const [order, setOrder] = useState({});
