@@ -2,7 +2,7 @@ import React from 'react'
 import '../styles/scss/main.scss';
 import SectionTitle from './SectionTitle';
 
-const DataOfDay = () => {
+const DataOfDay = ({profitDone,totalOrderCount}) => {
   return (
     <div className='today-score'>
     <SectionTitle>Score of Today</SectionTitle>
@@ -12,7 +12,7 @@ const DataOfDay = () => {
                 Total Order: 
             </h2>
             <h3>
-                11
+                {totalOrderCount}
             </h3>
         </div>
         <div className='card__1 card--2'>
@@ -20,7 +20,7 @@ const DataOfDay = () => {
                 Profit of Completed: 
             </h2>
             <h3>
-                10000 - AZN
+                {profitDone} - AZN
             </h3>
         </div>
     </div>

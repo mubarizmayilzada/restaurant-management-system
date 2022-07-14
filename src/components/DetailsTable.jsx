@@ -50,7 +50,7 @@ const DetailsTable = ({order}) => {
               </thead>
               <tbody className="bg-white divide-y divide-gray-200 dark:bg-indigo-100 dark:divide-gray-300">
                 
-                
+                {console.log(order.order?.price)}
                 
                 
                 
@@ -60,17 +60,9 @@ const DetailsTable = ({order}) => {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         <div>
-                         {item.id}
+                         {index + 1}
                         </div>
                       </div>
-                    </td>
-
-
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      {item.table}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      {item.worker}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       {item.meal}
@@ -91,11 +83,11 @@ const DetailsTable = ({order}) => {
                       } AZN
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      75:45678;845
+                      {item.dateNow}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      <span className={`p-1 px-2 cursor-pointer text-indigo-900 rounded-full`}>
-                        {item.tatus}
+                      <span className={`p-1 px-2 ${item.statusbar === "waiting" ? "text-red-500" : "text-indigo-900"} `}>
+                        {item.statusbar}
                       </span>
                     </td>
                   </tr>
@@ -105,7 +97,7 @@ const DetailsTable = ({order}) => {
           </div>
         </div>
       </div>
-      <TotalBudget price={order.order?.price}></TotalBudget>    
+      <TotalBudget profitAll={((order.order?.price !== undefined) && order.order.price)}></TotalBudget>    
       </div>
   )
 }

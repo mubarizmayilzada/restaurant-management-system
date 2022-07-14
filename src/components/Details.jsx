@@ -18,7 +18,7 @@ const Details = () => {
   }, [point]);
   return (
     <div className="details-wrapper">
-      <SectionTitle>table</SectionTitle>
+      <SectionTitle>{`Table: ${order.order?.product?.[0].table} | Worker: ${order.order?.product?.[0].worker}`}</SectionTitle>
       <DetailsTable order={order} />
     </div>
   );

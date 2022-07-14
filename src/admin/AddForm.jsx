@@ -24,6 +24,7 @@ const AddForm = () => {
     const [total,setTotal] = useState(0);
     const [statusbar,setStatusbar] = useState('waiting');
     const [cancel,setCancel] = useState(false);
+
     const mealCount = useRef(1);
 
     const detectedPrice = (key) => {
@@ -93,6 +94,8 @@ const AddForm = () => {
     tables.map(table => (
         tableName.push(table.name)
     ));
+    const dateNow = new Date();
+
     const createdOrderData = {
         meal: selectedMeal,
         table: selectedTable,
@@ -101,13 +104,13 @@ const AddForm = () => {
         id: Math.random(10),
         statusbar: statusbar,
         isCancel: cancel,
-        price:  detectedPrice(selectedMeal) * countValue
+        price:  detectedPrice(selectedMeal) * countValue,
+        dateNow: dateNow.toUTCString().split(" ")[4]
     };
     const handleMealCount = () => {
         setCountValue(mealCount.current.value);
         setCountPrice(mealCount.current.value);
     }
-
     const handleSubmit = (e) => {
         e.preventDefault();
         meals.map(meal => (
@@ -115,9 +118,8 @@ const AddForm = () => {
             setPriceHolder([...priceHolder, meal.price]) : ''       
         ));
         setCreateOrder([...createOrder,createdOrderData]);
-        setStatusbar('wainting');
+        setStatusbar('waiting');
         setCancel(false);
-
     };
 
 
@@ -134,33 +136,85 @@ const AddForm = () => {
   return {
     total,
     createOrder,
-    setStatusbar,
     setCreateOrder,
-    setCancel,
     detectedPrice,
-    render:(
-    <div className='addform-wrapper'>
-        <form className='custom-form' action="">
-            <input  disabled className='custom-input' value={selectedMeal} type="text" placeholder='meal'/>
-            <DropDown setSelectedWord={setSelectedMeal} options={mealName} title="meal"/>
-            <input  disabled className='custom-input' value={selectedTable } type="text" placeholder='table'/>
-            <DropDown closeDropDown={closeDropDown} options={tableName} setSelectedWord={setSelectedTable} title="table"/>
-            <input  disabled className='custom-input' value={selectedWorker} type="text" placeholder='worker'/>
-            <DropDown closeDropDownWorker={closeDropDownWorker} options={workerName} setSelectedWord={setSelectedWorker} title="worker"/>
-            <input ref={mealCount} value={countPrice} onChange={handleMealCount} className='custom-input custom-input__number' type="number" min={1} placeholder='count'/>
-            <button type='submit' className='custom-button' onClick={!selectedMeal || !selectedWorker || !selectedTable ? (e) =>{e.preventDefault()} : handleSubmit }>
-                Create
-            </button>
-            <span className='custom-price'>
-                Price: {
-                        meals.map(meal => (
-                            meal.title === selectedMeal ? ( mealCount.current.value === 0 ? meal.price : (meal.price * mealCount.current.value) ) : ''
-                        ))
-                }
-            </span>
+    render: (
+      <div className="addform-wrapper">
+        <form className="custom-form" action="">
+          <input
+            disabled
+            className="custom-input"
+            value={selectedMeal}
+            type="text"
+            placeholder="meal"
+          />
+          <DropDown
+            setSelectedWord={setSelectedMeal}
+            options={mealName}
+            title="meal"
+          />
+          <input
+            disabled
+            className="custom-input"
+            value={selectedTable}
+            type="text"
+            placeholder="table"
+          />
+          <DropDown
+            closeDropDown={closeDropDown}
+            options={tableName}
+            setSelectedWord={setSelectedTable}
+            title="table"
+          />
+          <input
+            disabled
+            className="custom-input"
+            value={selectedWorker}
+            type="text"
+            placeholder="worker"
+          />
+          <DropDown
+            closeDropDownWorker={closeDropDownWorker}
+            options={workerName}
+            setSelectedWord={setSelectedWorker}
+            title="worker"
+          />
+          <input
+            ref={mealCount}
+            value={countPrice}
+            onChange={handleMealCount}
+            className="custom-input custom-input__number"
+            type="number"
+            min={1}
+            placeholder="count"
+          />
+          <button
+            type="submit"
+            className="custom-button"
+            onClick={
+              !selectedMeal || !selectedWorker || !selectedTable
+                ? (e) => {
+                    e.preventDefault();
+                  }
+                : handleSubmit
+            }
+          >
+            Create
+          </button>
+          <span className="custom-price">
+            Price:{" "}
+            {meals.map((meal) =>
+              meal.title === selectedMeal
+                ? mealCount.current.value === 0
+                  ? meal.price
+                  : meal.price * mealCount.current.value
+                : ""
+            )}
+          </span>
         </form>
-    </div>
-  )}
+      </div>
+    ),
+  };
 }
 
 export default AddForm

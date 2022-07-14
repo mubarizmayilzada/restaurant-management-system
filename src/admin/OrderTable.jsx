@@ -2,23 +2,15 @@ import { useNavigate } from "react-router-dom";
 import "../styles/scss/main.scss";
 import TotalBudget from "../components/TotalBudget";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const OrderTable = ({
   createOrder,
   total,
-  setStatusbar,
   setCreateOrder,
-  setCancel,
   detectedPrice,
 }) => {
-  const [statusWord, setStatusWord] = useState(true);
-  const [setStatus, setSetStatus] = useState(true);
-  const [table, setTable] = useState("");
-  const [worker, setWorker] = useState("");
-  const [product, setProduct] = useState([]);
-  const [count, setCount] = useState(1);
-  const [price, setPrice] = useState(0);
+  const [date, setDate] = useState(new Date().toUTCString().split(" ")[4]);
   const navigate = useNavigate();
 
   const handleCancel = (id) => {
@@ -29,39 +21,32 @@ const OrderTable = ({
   };
 
   const handleReady = (id) => {
-    createOrder.map((item) => {
-      id === item.id && (item.statusbar = "done");
-    });
+    createOrder.map((item) => (
+      id === item.id && (item.statusbar = "done")
+    ));
     setCreateOrder([...createOrder]);
   };
 
   const dateNow = new Date();
 
   const handleOrderSubmit = (e) => {
-    createOrder.map(
-      (item) => (
-        setTable(item.table),
-        setWorker(item.worker),
-        setProduct(item.meal),
-        setCount(item.count),
-        setPrice(detectedPrice(item.meal) * item.count)
-      )
-    );
-
+        setDate(dateNow.toUTCString().split(" ")[4])
     const data = {
       order: {
         table: createOrder[0].table,
         worker: createOrder[0].worker,
         product: createOrder,
         price: total,
-        date: table,
-        status: setStatus,
+        date: date,
+        status: (createOrder.some((item)=>{
+          return item.statusbar === "waiting"
+        })) ? "waiting" : "done",
         id: Math.random(10),
       },
     };
     e.preventDefault();
-    axios.post("http://localhost:3500/orders", data);
-    // .then(navigate('/'))
+    axios.post("http://localhost:3500/orders", data)
+    .then(navigate('/'))
   };
 
   return (
@@ -163,7 +148,7 @@ const OrderTable = ({
                         {detectedPrice(item.meal) * item.count} AZN
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {dateNow.toUTCString().split(" ")[4]} AM
+                        {item.dateNow} AM
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         <span

@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/scss/main.scss';
 
-const DataOfDay = ({price}) => {
+const DataOfDay = ({profitAll}) => {
   return (
     <div className='total-score'>
     <div className='card'>
@@ -10,7 +10,7 @@ const DataOfDay = ({price}) => {
                 Total Budget: 
             </h2>
             <h3>
-                {price} azn
+                {profitAll} azn
             </h3>
         </div>
     </div>
