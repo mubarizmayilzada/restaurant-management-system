@@ -199,7 +199,7 @@ const OrderTable = ({
             </div>
           </div>
         </div>
-        <TotalBudget price={total}></TotalBudget>
+        <TotalBudget profitAll={total}></TotalBudget>
         <button
           type="submit"
           onClick={handleOrderSubmit}

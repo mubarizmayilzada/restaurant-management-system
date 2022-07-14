@@ -97,7 +97,7 @@ const Table = () => {
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200 dark:bg-indigo-100 dark:divide-gray-300">
                     {tableData.map((item, index) => (
-                      <tr key={index}>
+                        <tr key={index}>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
                             <div>{index + 1}</div>
@@ -135,7 +135,8 @@ const Table = () => {
                           </Link>
                         </td>
                       </tr>
-                    ))}
+                      )
+                    )}
                   </tbody>
                 </table>
               </div>

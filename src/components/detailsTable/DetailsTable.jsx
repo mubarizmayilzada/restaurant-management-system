@@ -55,8 +55,7 @@ const DetailsTable = ({order}) => {
                 
                 
                {order.order?.product?.map((item,index) => (
-                  
-                  <tr key={index}>
+                (item.isCancel !== true ) && (<tr key={index}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         <div>
@@ -90,7 +89,7 @@ const DetailsTable = ({order}) => {
                         {item.statusbar}
                       </span>
                     </td>
-                  </tr>
+                  </tr>)
                 ))}
               </tbody>
             </table>
